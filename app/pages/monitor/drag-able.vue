@@ -1,0 +1,3 @@
+<template>
+  drag able
+</template>

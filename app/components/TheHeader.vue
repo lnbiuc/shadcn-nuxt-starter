@@ -7,33 +7,42 @@ function toggleDark() {
   color.preference = color.value === 'dark' ? 'light' : 'dark'
 }
 
-const links = [
-  {
-    name: 'GitHub',
-    href: 'https://github.com/xdesign-dev/shadcn-nuxt-starter',
-    icon: GithubLogoIcon,
-  },
-]
+// const links = [
+//   {
+//     name: 'GitHub',
+//     href: 'https://github.com/xdesign-dev/shadcn-nuxt-starter',
+//     icon: GithubLogoIcon,
+//   },
+// ]
 
 const mainNav = [
+  // {
+  //   title: 'Themes',
+  //   href: '/themes',
+  // },
+  // {
+  //   title: 'Examples',
+  //   href: '/examples/dashboard',
+  // },
+  // {
+  //   title: 'Pages',
+  //   href: '/blocks',
+  // },
   {
-    title: 'Themes',
-    href: '/themes',
+    title: '首页',
+    href: '/',
   },
   {
-    title: 'Examples',
-    href: '/examples/dashboard',
+    title: '监控室',
+    href: '/monitor',
   },
   {
-    title: 'Pages',
-    href: '/blocks',
-  },
-  {
-    title: 'Docs',
+    title: '文档',
     href: '/docs/getting-started',
+    external: true,
   },
   {
-    title: 'Login',
+    title: '登陆',
     href: '/login',
   },
 ]
@@ -145,7 +154,7 @@ function handleSelectLink(item: any) {
       <MobileNav :nav="mainNav" :secondary-nav="secondaryNav" />
 
       <div class="flex flex-1 items-center justify-between md:justify-end space-x-2">
-        <div class="w-full flex-1 md:w-auto md:flex-none">
+        <!-- <div class="w-full flex-1 md:w-auto md:flex-none">
           <Button
             variant="outline"
             class="relative h-8 w-full justify-start rounded-[0.5rem] bg-background text-sm text-muted-foreground font-normal shadow-none lg:w-64 md:w-40 sm:pr-12"
@@ -157,12 +166,12 @@ function handleSelectLink(item: any) {
               <span class="text-xs">⌘</span>K
             </Kbd>
           </Button>
-        </div>
+        </div> -->
 
         <nav class="flex items-center">
           <ThemePopover />
 
-          <Button
+          <!-- <Button
             v-for="link in links"
             :key="link.name"
             as="a"
@@ -172,7 +181,7 @@ function handleSelectLink(item: any) {
             size="icon"
           >
             <component :is="link.icon" class="h-5 w-5" />
-          </Button>
+          </Button> -->
 
           <ClientOnly>
             <Button

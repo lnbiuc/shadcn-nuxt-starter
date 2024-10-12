@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     './modules/shadcn',
     '@nuxt/content',
+    '@nuxt/image',
   ],
 
   debug: true,

@@ -1,66 +1,89 @@
 <script setup lang="ts">
+
 definePageMeta({
   layout: 'blank',
 })
+
+const router = useRouter()
+
+function handleLogin() {
+  router.push('/')
+}
 </script>
 
 <template>
-  <div class="w-full lg:grid lg:grid-cols-2 lg:min-h-[600px] xl:min-h-[800px]">
-    <div class="flex items-center justify-center py-12">
-      <div class="grid mx-auto w-[350px] gap-6">
-        <div class="grid gap-2 text-center">
-          <h1 class="text-3xl font-bold">
-            Login
-          </h1>
-          <p class="text-balance text-muted-foreground">
-            Enter your email below to login to your account
-          </p>
-        </div>
-        <div class="grid gap-4">
-          <div class="grid gap-2">
-            <Label for="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
-          </div>
-          <div class="grid gap-2">
-            <div class="flex items-center">
-              <Label for="password">Password</Label>
-              <a
-                href="/forgot-password"
-                class="ml-auto inline-block text-sm underline"
-              >
-                Forgot your password?
-              </a>
+  <div class="flex items-center justify-center py-12">
+    <Tabs default-value="account" class="w-[400px]">
+      <TabsList class="grid grid-cols-2 w-full">
+        <TabsTrigger value="account">
+          登陆
+        </TabsTrigger>
+        <TabsTrigger value="password">
+          注册
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <Card>
+          <CardHeader>
+            <CardTitle>使用账号密码登陆！</CardTitle>
+            <CardDescription>
+              确保你已经注册了账号，没有注册请点击注册！
+            </CardDescription>
+          </CardHeader>
+          <CardContent class="space-y-2">
+            <div class="space-y-1">
+              <Label for="username">用户名</Label>
+              <Input id="username" />
             </div>
-            <Input id="password" type="password" required />
-          </div>
-          <Button type="submit" class="w-full">
-            Login
-          </Button>
-          <Button variant="outline" class="w-full">
-            Login with Google
-          </Button>
-        </div>
-        <div class="mt-4 text-center text-sm">
-          Don't have an account?
-          <a href="#" class="underline">
-            Sign up
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="hidden bg-muted lg:block">
-      <img
-        src="/placeholder.svg"
-        alt="Image"
-        width="1920"
-        height="1080"
-        class="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-      >
-    </div>
+            <div class="space-y-1">
+              <Label for="password">密码</Label>
+              <Input id="password" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter class="flex flex-col items-end justify-between">
+            <div class="flex items-center justify-end space-x-2">
+              <Switch id="airplane-mode" default-checked />
+              <Label for="airplane-mode">保持登陆状态</Label>
+            </div>
+            <Button class="mt-4 w-full" @click="handleLogin">
+              登陆
+            </Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+      <TabsContent value="password">
+        <Card>
+          <CardHeader>
+            <CardTitle>使用邀请码注册！</CardTitle>
+            <CardDescription>
+              如果你没有邀请码，请联系<span class="mx-2 text-violet">violet</span>获取邀请码！
+            </CardDescription>
+          </CardHeader>
+          <CardContent class="space-y-2">
+            <div class="space-y-1">
+              <Label for="invitecode">邀请码</Label>
+              <Input id="invitecode" />
+            </div>
+            <div class="space-y-1">
+              <Label for="username">用户名</Label>
+              <Input id="username" />
+            </div>
+            <div class="space-y-1">
+              <Label for="current">密码</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div class="space-y-1">
+              <Label for="duplicate">再次输入密码</Label>
+              <Input id="duplicate" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button class="w-full" @click="handleLogin">
+              注册
+            </Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+    </Tabs>
   </div>
 </template>

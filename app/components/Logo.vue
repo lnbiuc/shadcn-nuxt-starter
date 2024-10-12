@@ -16,7 +16,7 @@
     </svg>
 
     <span class="font-bold">
-      shadcn-nuxt-starter
+      VIOLET LIVE
     </span>
   </a>
 </template>

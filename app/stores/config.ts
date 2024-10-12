@@ -10,7 +10,7 @@ export const useConfigStore = defineStore('config', () => {
   const RADII = [0, 0.25, 0.5, 0.75, 1]
 
   const config = reactive<Config>({
-    theme: 'green',
+    theme: 'violet',
     radius: 0.5,
   })
 

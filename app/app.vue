@@ -27,7 +27,6 @@ useHead({
 <template>
   <ConfigProvider :use-id="useIdFunction">
     <TooltipProvider :delay-duration="0">
-      <VitePwaManifest />
       <NuxtLoadingIndicator style="opacity: 1;" :height="2" />
       <Toaster />
       <NuxtLayout>

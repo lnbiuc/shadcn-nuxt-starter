@@ -1,4 +1,3 @@
-import { pwa } from './app/config/pwa'
 import { appDescription } from './app/config/site'
 
 export default defineNuxtConfig({
@@ -8,7 +7,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/color-mode',
-    '@vite-pwa/nuxt',
     '@nuxt/eslint',
     './modules/shadcn',
     '@nuxt/content',
@@ -90,8 +88,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  pwa,
 
   features: {
     // For UnoCSS

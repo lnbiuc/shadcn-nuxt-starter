@@ -33,9 +33,8 @@ const mainNav = [
     href: '/docs/getting-started',
   },
   {
-    title: 'GitHub',
-    href: 'https://github.com/xdesign-dev/shadcn-nuxt-starter',
-    external: true,
+    title: 'Login',
+    href: '/login',
   },
 ]
 

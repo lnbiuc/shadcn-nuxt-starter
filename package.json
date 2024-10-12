@@ -4,7 +4,6 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "build": "nuxi build",
-    "dev:pwa": "VITE_PLUGIN_PWA=true nuxi dev",
     "dev": "nuxi dev --host 127.0.0.1 --port 7000",
     "clean": "nuxi cleanup",
     "generate": "nuxi generate",
@@ -54,7 +53,6 @@
     "@types/node": "^20.12.12",
     "@unocss/eslint-config": "^0.60.0",
     "@unocss/nuxt": "0.61.5",
-    "@vite-pwa/nuxt": "^0.7.0",
     "eslint": "^9.2.0",
     "eslint-plugin-format": "^0.1.1",
     "iconify-icon": "^2.1.0",

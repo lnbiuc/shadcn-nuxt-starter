@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { appDescription } from './app/config/site'
 
 export default defineNuxtConfig({
@@ -26,11 +27,14 @@ export default defineNuxtConfig({
   // Build as SPA application
   // ssr: false,
 
-  // routeRules: {
-  //   // '/admin/**': { ssr: false },
-  //   // '/account/**': { ssr: false },
-  //   // '/api/**': { cors: true },
-  // },
+  routeRules: {
+    // '/admin/**': { ssr: false },
+    // '/account/**': { ssr: false },
+    '/api/**': {
+      cors: true,
+      proxy: { to: 'http://127.0.0.1:42175/api/**' },
+    },
+  },
 
   vue: {
     compilerOptions: {

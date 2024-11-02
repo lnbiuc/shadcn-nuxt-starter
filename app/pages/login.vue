@@ -1,14 +1,73 @@
 <script setup lang="ts">
+import { useFetch } from '@vueuse/core'
+import { useToast } from '~/components/ui/toast'
+import type { IRespose } from '~/type'
 
 definePageMeta({
   layout: 'blank',
 })
 
-const router = useRouter()
+const loginForm = reactive({
+  username: '',
+  password: '',
+})
 
-function handleLogin() {
-  router.push('/')
-}
+const router = useRouter()
+const { toast } = useToast()
+
+const { isFetching: isLogin, data: loginData, execute: doLogin } = useIVFetch<IRespose<any>>('/api/user/login', { body: JSON.stringify(loginForm) }, { immediate: false }).post().json()
+
+const handleLogin = useThrottleFn(async () => {
+  await doLogin()
+  switch (loginData.value?.code) {
+    case 0:
+      router.push('/')
+      break
+    case 2001:
+      toast({
+        title: loginData.value.msg,
+        description: JSON.stringify(loginData.value),
+        duration: 3000,
+      })
+      break
+    default:
+      toast({
+        title: loginData.value.msg,
+        description: JSON.stringify(loginData.value),
+        duration: 3000,
+      })
+  }
+})
+
+const registerForm = reactive({
+  username: '',
+  password: '',
+  code: '',
+})
+
+const { isFetching: isRegisting, data: registerData, execute: doRegister } = useIVFetch<IRespose<any>>('/api/user/register', { body: JSON.stringify(registerForm) }, { immediate: false }).post().json()
+
+const handleRegister = useThrottleFn(async () => {
+  await doRegister()
+  switch (registerData.value?.code) {
+    case 0:
+      router.push('/')
+      break
+    case 2001:
+      toast({
+        title: registerData.value.msg,
+        description: JSON.stringify(registerData.value),
+        duration: 3000,
+      })
+      break
+    default:
+      toast({
+        title: registerData.value.msg,
+        description: JSON.stringify(registerData.value),
+        duration: 3000,
+      })
+  }
+})
 </script>
 
 <template>
@@ -33,11 +92,11 @@ function handleLogin() {
           <CardContent class="space-y-2">
             <div class="space-y-1">
               <Label for="username">用户名</Label>
-              <Input id="username" />
+              <Input id="username" v-model="loginForm.username" />
             </div>
             <div class="space-y-1">
               <Label for="password">密码</Label>
-              <Input id="password" type="password" />
+              <Input id="password" v-model="loginForm.password" type="password" />
             </div>
           </CardContent>
           <CardFooter class="flex flex-col items-end justify-between">
@@ -45,7 +104,7 @@ function handleLogin() {
               <Switch id="airplane-mode" default-checked />
               <Label for="airplane-mode">保持登陆状态</Label>
             </div>
-            <Button class="mt-4 w-full" @click="handleLogin">
+            <Button class="mt-4 w-full" :disabled="isLogin" @click="handleLogin">
               登陆
             </Button>
           </CardFooter>
@@ -62,23 +121,19 @@ function handleLogin() {
           <CardContent class="space-y-2">
             <div class="space-y-1">
               <Label for="invitecode">邀请码</Label>
-              <Input id="invitecode" />
+              <Input id="invitecode" v-model="registerForm.code" />
             </div>
             <div class="space-y-1">
               <Label for="username">用户名</Label>
-              <Input id="username" />
+              <Input id="username" v-model="registerForm.username" />
             </div>
             <div class="space-y-1">
               <Label for="current">密码</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div class="space-y-1">
-              <Label for="duplicate">再次输入密码</Label>
-              <Input id="duplicate" type="password" />
+              <Input id="current" v-model="registerForm.password" type="password" />
             </div>
           </CardContent>
           <CardFooter>
-            <Button class="w-full" @click="handleLogin">
+            <Button class="w-full" :disable="isRegisting" @click="handleRegister">
               注册
             </Button>
           </CardFooter>

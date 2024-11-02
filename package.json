@@ -4,7 +4,7 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "build": "nuxi build",
-    "dev": "nuxi dev --host 127.0.0.1 --port 7000",
+    "dev": "nuxi dev --host 127.0.0.1 --port 7000 --dotenv .env.local",
     "clean": "nuxi cleanup",
     "generate": "nuxi generate",
     "prepare": "nuxi prepare",
@@ -33,6 +33,7 @@
     "vaul-vue": "^0.1.2",
     "vee-validate": "4.12.8",
     "vue": "^3.4.27",
+    "vue-sonner": "^1.2.5",
     "vue-wrap-balancer": "^1.1.3",
     "xgplayer": "^3.0.20",
     "xgplayer-flv": "^3.0.20",
